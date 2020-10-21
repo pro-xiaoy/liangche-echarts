@@ -1,5 +1,6 @@
 # liangche-admin
-
+## 圣经
+https://leancloud.cn/docs/leanstorage_guide-js.html#hash701396643
 ## Project setup
 ```
 yarn install
