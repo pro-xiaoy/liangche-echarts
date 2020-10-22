@@ -1,4 +1,5 @@
 module.exports = {
+  publicPath: process.env.NODE_ENV === "production" ? "/liangche-echarts/" : "/",
   devServer: {
     proxy: {
       // iP8GQaXY.api.lncldglobal.com
