@@ -70,27 +70,50 @@ export default {
         yAxis: {
           type: "value",
         },
-        // series: this.dataList,
         series: [
           {
             name: "收入",
             type: "line",
             stack: "总量",
             data: (this.dataList || []).map((item) => item.income),
+            itemStyle : {
+                normal : {
+                  color:'#3de03d', //改变折线点的颜色
+                  lineStyle:{
+                      color:'#3de03d' //改变折线颜色
+                  }
+                }
+            },
           },
           {
             name: "支出",
             type: "line",
             stack: "总量",
             data: (this.dataList || []).map((item) => item.expenditure),
-          },
+            itemStyle : {
+                normal : {
+                  color:'#dc2424', //改变折线点的颜色
+                  lineStyle:{
+                      color:'#dc2424' //改变折线颜色
+                  }
+                }
+            },
+         },
           {
+            // 080808
             name: "合计",
             type: "line",
             stack: "总量",
             data: (this.dataList || []).map((item) => item.total),
+            itemStyle : {
+                normal : {
+                  color:'#080808', //改变折线点的颜色
+                  lineStyle:{
+                      color:'#080808' //改变折线颜色
+                  }
+                }
+            },
           },
-          
         ],
       });
     },
