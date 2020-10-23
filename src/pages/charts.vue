@@ -22,6 +22,15 @@
         >
         <el-button @click="resetForm('ruleForm')">重置</el-button>
       </el-form-item>
+    <el-form-item style="margin-left: 40px">
+      <el-switch
+        v-model="switchval"
+        @change="changeSwitch"
+        inactive-text="按日"
+        active-text="按月"
+       >
+      </el-switch>
+    </el-form-item>
     </el-form>
 
     <div id="myChart" style="width: 1000px; height: 700px"></div>
@@ -30,12 +39,15 @@
 
 <script>
 import { formmteDate } from "../utils/index.js";
+var _ = require('lodash');
+// import _ from 'lodash'
 const AV = require("leancloud-storage");
 export default {
   data() {
     return {
       dataList: [],
       date: "",
+      switchval: false,
       pickerOptions: {
         shortcuts: [
           {
@@ -112,6 +124,15 @@ export default {
         this.drawLine();
       });
     },
+    changeSwitch(val) {
+      console.log('val+++', val, this.dataList)
+      this.switchval = val
+      let deepdata = _.cloneDeep(this.dataList)
+      // let temstore = deepdata.reduce(() => {}, [])
+      console.log('temstore+++', deepdata)
+    },
+
+
     drawLine() {
       let myChart = this.$echarts.init(document.getElementById("myChart"));
       // 绘制图表
