@@ -18,7 +18,7 @@ AV.init({
   serverURL: 'https://ip8gqaxy.lc-cn-n1-shared.com'
 });
 
-
+document.title = '靓车饰界'
 new Vue({
   router,
   render: h => h(App)

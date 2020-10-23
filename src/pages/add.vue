@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="echats_content">
     <el-form :label-position="labelPosition" label-width="80px">
       <el-form-item label="日期">
         <el-date-picker v-model="date" type="date" placeholder="选择日期">

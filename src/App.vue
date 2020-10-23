@@ -1,7 +1,9 @@
 <template>
   <div id="app">
-    <div style="height: 50px; width: 100%"></div>
-    <el-container style="height: calc(100vh - 50px); border: 1px solid #eee">
+    <div  class="header">
+      <h3>靓车饰界</h3>
+    </div>
+    <el-container class="container" >
       <el-aside width="200px" style="background-color: rgb(238, 241, 246)">
         <el-menu :default-openeds="['1', '3']">
           <el-submenu index="1">
@@ -16,7 +18,7 @@
       </el-aside>
 
       <el-container>
-          <router-view/>
+        <router-view/>
       </el-container>
     </el-container>
   </div>
@@ -51,7 +53,19 @@ export default {
   font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
   color: #2c3e50;
+}
+.header {
+  height: 50px; 
+  width: 100%;
+  padding-left: 40px;
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+}
+.container {
+  height: calc(100vh - 50px);
+  border: 1px solid #eee;
+  box-sizing: border-box;
 }
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="echats_content">
     <el-table :data="dataList" style="width: 800px" :fit="true" border size="medium"> 
       <el-table-column prop="time" label="日期" align="center"> </el-table-column>
       <el-table-column prop="income" label="收入" align="center"> </el-table-column>
