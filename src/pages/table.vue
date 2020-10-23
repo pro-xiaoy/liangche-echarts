@@ -4,9 +4,9 @@
       <el-table-column prop="time" label="日期" align="center"> </el-table-column>
       <el-table-column prop="income" label="收入" align="center"> </el-table-column>
       <el-table-column prop="expenditure" label="支出" align="center"> </el-table-column>
-      <el-table-column prop="total" label="合计" align="center">
+      <el-table-column prop="profit" label="利润" align="center">
         <template slot-scope="scope">
-          <span :style="{'color':scope.row.total>0 ? 'green':'red'}">{{scope.row.total}}</span>
+          <span :style="{'color':scope.row.profit>0 ? 'green':'red'}">{{scope.row.profit}}</span>
         </template>
       </el-table-column>
     </el-table>
@@ -40,7 +40,7 @@ export default {
         });
 
         arrdate.forEach((item) => {
-          item.total = (item.income - item.expenditure).toFixed(2);
+          item.profit = (item.income - item.expenditure).toFixed(2);
           item.time = formmteDate(item.date)
         });
         this.dataList = arrdate;

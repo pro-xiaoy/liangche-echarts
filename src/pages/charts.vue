@@ -1,7 +1,7 @@
 <template>
   <div class="echats_content">
     <el-form :inline="true" class="demo-form-inline">
-      <el-form-item label="截取时间" required>
+      <el-form-item label="查询日期" required>
         <el-col :span="11">
           <el-date-picker
             v-model="date"
@@ -35,7 +35,7 @@ export default {
   data() {
     return {
       dataList: [],
-      date: '',
+      date: "",
       pickerOptions: {
         shortcuts: [
           {
@@ -75,6 +75,22 @@ export default {
   methods: {
     submitForm() {
       console.log("submit++++", this.date);
+      const query = new AV.Query("capital");
+      query.greaterThanOrEqualTo("date", +new Date(this.date[0]));
+      query.lessThanOrEqualTo("date", +new Date(this.date[1]));
+      query.find().then((resdata) => {
+        let arrdate = [];
+        resdata.forEach((item) => {
+          arrdate.push(item.attributes);
+        });
+
+        arrdate.forEach((item) => {
+          item.profit = (item.income - item.expenditure).toFixed(2);
+          item.time = formmteDate(item.date);
+        });
+        this.dataList = arrdate;
+        this.drawLine();
+      });
     },
     resetForm() {},
     initquery() {
@@ -89,7 +105,7 @@ export default {
         });
 
         arrdate.forEach((item) => {
-          item.total = (item.income - item.expenditure).toFixed(2);
+          item.profit = (item.income - item.expenditure).toFixed(2);
           item.time = formmteDate(item.date);
         });
         this.dataList = arrdate;
@@ -104,7 +120,7 @@ export default {
           trigger: "axis",
         },
         legend: {
-          data: ["收入", "支出", "合计"],
+          data: ["收入", "支出", "利润"],
         },
         grid: {
           left: "3%",
@@ -154,9 +170,9 @@ export default {
           },
           {
             // 080808
-            name: "合计",
+            name: "利润",
             type: "line",
-            data: (this.dataList || []).map((item) => item.total),
+            data: (this.dataList || []).map((item) => item.profit),
             itemStyle: {
               normal: {
                 color: "#080808", //改变折线点的颜色
