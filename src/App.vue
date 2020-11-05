@@ -1,26 +1,18 @@
 <template>
   <div id="app">
     <div  class="header">
-      <h3>靓车饰界</h3>
+      <h3 class="header_title">靓车饰界</h3>
     </div>
-    <el-container class="container" >
-      <el-aside width="200px" style="background-color: rgb(238, 241, 246)">
-        <el-menu :default-openeds="['1', '3']">
-          <el-submenu index="1">
-            <template slot="title"
-              ><i class="el-icon-message"></i>工作</template
-            >
-            <el-menu-item-group>
-              <el-menu-item index="1-1" v-for='(item, index) in menulist' :key="index" @click="routerPath(item)">{{item.name}}</el-menu-item>
-            </el-menu-item-group>
-          </el-submenu>
-        </el-menu>
-      </el-aside>
-
-      <el-container>
+    <div class="container">
+      <div class="aside">
+        <div v-for='(item, index) in menulist' :key="index" @click="routerPath(item)">
+          {{item.name}}
+        </div>
+      </div>
+      <div class="main">
         <router-view/>
-      </el-container>
-    </el-container>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -55,6 +47,10 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
 }
+.buttons {
+  width: 345px;
+  background: red;
+}
 .header {
   height: 50px; 
   width: 100%;
@@ -63,9 +59,27 @@ export default {
   align-items: center;
   box-sizing: border-box;
 }
+.header_title {
+  font-size: 25px;
+}
 .container {
   height: calc(100vh - 50px);
   border: 1px solid #eee;
   box-sizing: border-box;
+  display: flex;
 }
+.aside {
+  width: 200px;
+  height: 100%;
+}
+.main {
+  flex: 1;
+  height: 100%;
+}
+@media screen and  (max-width: 750px) {
+  .aside {
+    width: 0;
+  }
+}
+
 </style>

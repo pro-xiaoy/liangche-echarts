@@ -5,6 +5,8 @@ import router from './router'
 import echarts from 'echarts'
 
 import './styles/index.less'
+import './utils/rem'
+
 Vue.config.productionTip = false
 
 const AV = require('leancloud-storage');
